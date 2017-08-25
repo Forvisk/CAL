@@ -1,0 +1,21 @@
+Trabalho 1
+
+Escreva os algoritmo:
+	Bubble Sort;	ok
+	Insert Sort;
+	Merge Sort;
+	Quick Sort (1);
+	Quick Sort (2);
+	Heap Sort;
+	Counting Sort;
+	Bucket Sort.
+O algoritmo Quick Sort deve ser implementado de duas maneiras: 
+	(1 ) usando o primeiro elemento como pivô;
+	(2 ) selecionando um elemento qualquer como pivô.
+
+Teste os algoritmos com vetores de 25000, 50000, 75000, 100000 e 1000000 números entre 0 e o tamanho do vetor: 
+	(1 ) em ordem crescente;
+	(2 ) em ordem decrescente;
+	(3 ) em ordem aleatória e;
+	(4 ) em ordem aleatória mas com um elemento 100000000 (em qualquer posição).
+Escreva um relatório comparativo apresentando os tempos de execuções de cada algoritmo para cada tipo de entrada. Não é necessário apresentar os algoritmos, apenas um comparativo do tempo de execução em forma de tabela ou gráfico.
