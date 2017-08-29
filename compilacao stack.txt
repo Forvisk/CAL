@@ -1,0 +1,1 @@
+gcc -Wl,--stack,bytesize -o ordenaNew ordenacao.c
