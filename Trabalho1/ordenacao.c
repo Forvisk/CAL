@@ -34,6 +34,14 @@ void quickSortRand( int *vet);
 int quickRand( int *vet, int ini, int fim);
 int pivoRand( int *vet, int ini, int fim);
 
+void heapSort( int *vet);
+void heap( int *vet, int tam);
+void heapfy( int *vet, int tam, int i);
+void buildHeap( int *vet, int tam);
+
+void countingSort( int *vet);
+void countSort( int *vet, int tam);
+
 
 int static tam0 = 1000000;
 int static tam1 = 25000;
@@ -57,7 +65,7 @@ int main(){
 	populaVetor( vet, tam0, 2);
 	populaVetor( vet, tam0, 3);
 	populaVetor( vet, tam0, 4);
-	*/
+	
 	//bubbleSort( vet);
 	//printf("\n...\n");
 	//insertSort(vet);
@@ -68,17 +76,16 @@ int main(){
 	//printf("\n...\n");
 	//quickSortRand(vet);
 	//printf("\n...\n");
+	//heapSort( vet);
+	//printf("\n...\n");
+	countingSort(vet);
+	printf("\n...\n");
+	countingSort(vet);
+	printf("\n...\n");
+	
+	*/
 
-		/*
-		populaVetor( vet, tam0, 1);
-		populaVetor( vet, tam0, 2);
-		populaVetor( vet, tam0, 3);
-		populaVetor( vet, tam0, 4);
-		*/
-		//bubbleSort( vet);
-		//printf("\n...\n");
-		//insertSort(vet);
-
+	
 	printf("\n Populando\n");
 	populaVetor( vet, 500, 3);
 	for( i = 0; i < 500; i++)
@@ -100,20 +107,15 @@ int main(){
 		printf(" %i ", vet[i]);
 	free(vet);
 
-	/*
-	//Deixamos o merge para depois
 	printf("\n Populando\n");
-	populaVetor( vet, 10, 3);
-	for( i = 0; i < 10; i++)
+	populaVetor( vet, 500, 3);
+	for( i = 0; i < 500; i++)
 		printf(" %i ", vet[i]);
 	printf("\nMerge Sort");
 	merge(vet, 0, 500);
-	printf("Merge Sort\n");
-	merge(vet, 0, 10);
 	printf("\n Ordenado\n");
-	for( i = 0; i < 10; i++)
+	for( i = 0; i < 500; i++)
 		printf(" %i ", vet[i]);
-	*/
 	
 	printf("\n Populando\n");
 	populaVetor( vet, 500, 3);
@@ -135,11 +137,32 @@ int main(){
 	for( i = 0; i < 500; i++)
 		printf(" %i ", vet[i]);
 
+	printf("\n Populando\n");
+	populaVetor( vet, 500, 3);
+	for( i = 0; i < 500; i++)
+		printf(" %i ", vet[i]);
+	printf("\nHeap Sort");
+	heap(vet, 500);
+	printf("\n Ordenado\n");
+	for( i = 0; i < 500; i++)
+		printf(" %i ", vet[i]);
+
+		printf("\n Populando\n");
+	populaVetor( vet, 500, 3);
+	for( i = 0; i < 500; i++)
+		printf(" %i ", vet[i]);
+	printf("\nCounting Sort");
+	countSort(vet, 500);
+	printf("\n Ordenado\n");
+	for( i = 0; i < 500; i++)
+		printf(" %i ", vet[i]);
+
 	free(vet);
 
 	return 0;
 }
 
+//Funçõeos de Relógios
 void iniciaRelogio(){
 	// Inicia o relógio para contar o tempo
 	QueryPerformanceFrequency( &frequencia );
@@ -158,13 +181,13 @@ void finalizaRelogio(){
 	printf("\n...\n");
 }
 
-	//retirado do exemplo de bubble sort
 int time_diff(struct timeval x , struct timeval y){
 	int diff;
 		diff = (y.tv_sec - x.tv_sec) + 1e-6 * (y.tv_usec - x.tv_usec); /* in seconds */
 	return diff;
 }
 
+//Popula o vetor
 int populaVetor( int *vet, int tam, int tipo){
 	int i;
 	printf("Iniciando vetor de %i numeros ", tam);
@@ -209,6 +232,7 @@ int populaVetor( int *vet, int tam, int tipo){
 	return 1;
 }
 
+//Funções de Bubble Sort
 void bubbleSort( int *vet){
 	printf("Iniciando testes com Bubble Sort\n");
 
@@ -256,6 +280,7 @@ void bubble( int *vet, int tam){
 	}
 }
 
+//Funções de Insert Sort
 void insertSort( int *vet){
 	printf("Iniciando testes com Insert Sort\n");
 
@@ -303,6 +328,7 @@ void insert( int *vet, int tam){
 	}
 }
 
+//Funções de Merge Sort
 void mergeSort( int *vet){
 	printf("Iniciando testes com Merge Sort\n");
 
@@ -339,78 +365,77 @@ void mergeSort( int *vet){
 
 int merge( int *vet, int ini, int fim){
 	int meio;
-	if( ini - fim < 2)
-		return 0;
-	else
-		printf("ini: %i, fim: %i, meio: %i\n", ini, fim, meio);
-	meio = (fim + ini) / 2;
-	int meio = (fim - ini) / 2;
-	if( ini < 2)
-	printf("\n Merge %i - %i : %i", ini, fim, meio);
-	if( ini >= fim){
-		//printf("Saida");
+	//int k;
+	if( fim - ini < 2){
+		//printf("\nSaindo %i - %i\n", ini, fim);
 		return 0;
 	}
+	meio = (fim + ini) / 2;
+	//printf("ini: %i, fim: %i, meio: %i\n", ini, fim, meio);
+
 	merge( vet, ini, meio);
-	merge( vet, meio+1, fim);
+	//for( k=ini; k<meio;k++)
+	//	printf("%i ", vet[k]);
+	//printf("\n");
+	merge( vet, meio, fim);
+	//for( k=meio+1; k<fim;k++)
+	//	printf("%i ", vet[k]);
+	//printf("\n");
 	doMerge( vet, ini, meio, fim);
+	//printf("\n");
 	return 1;
 }
 
 void doMerge( int *vet, int ini, int meio, int fim){
-	printf("doMerge %i : %i : %i", ini, meio, fim);
+	//printf("doMerge %i : %i : %i\n", ini, meio, fim);
 	int i, j, k;
+	int *newVet;
 	i = ini;
 	j = meio;
-	newVet = malloc( (fim - ini +1)*sizeof(int));
-	
-	for( k = 0; k < (fim - ini +1); k++){
-		if( (i < meio) && ((j >= fim) || (vet[i] < vet[j]))){
+	newVet = malloc( (fim - ini +1) * sizeof(int));
+	k = 0;
+	while( (i < meio) && (j < fim)){
+		if( vet[i] <= vet[j]){
+			//printf("%i[%i] <= %i[%i]\n", vet[i], i, vet[j], j);
 			newVet[k] = vet[i];
-			i++;
+			i++; 
 		}else{
+			//printf("%i > %i\n", vet[i], vet[j]);
 			newVet[k] = vet[j];
 			j++;
-	k = 0;
-	while( ((i < meio) || (j < fim)) && (k < fim-ini+1)){
-		if( i < meio){
-			if( j < fim){
-				if( vet[i] < vet[j]){
-					aux[k] = vet[i];
-					i++;
-				}else if(vet[i] > vet[j]){
-					aux[k] = vet[j];
-					j++;
-				}else{
-					aux[k] = vet[i];
-					i++;
-				}
-			}else{
-				aux[k] = vet[i];
-				i++;
-			}
-		}else{
-			if( j < fim){
-				aux[k] = vet[j];
-				j++;
-			}
+		}
+		//printf("%i[%i]\n", newVet[k], k);
+		k++;
+	}
+	//printf("i:%i %i j:%i %i k:%i %i\n", i, meio, j, fim, k, (fim - ini +1));
+	if( i == meio){
+		while( j < fim){
+			newVet[k] = vet[j];
+			//printf("j: %i[%i]\n", newVet[k], k);
+			j++;
+			k++;
+		}
+	}else{
+		while( i < meio){
+			newVet[k] = vet[i];
+			//printf("i: %i[%i]\n", newVet[k], k);
+			i++;
+			k++;
 		}
 	}
-
-	i = ini;
 	k = 0;
-	while( (i < fim) && (k < (fim-ini+1))){
+	i = ini;
+	while( k < (fim-ini+1) && i < fim){
 		vet[i] = newVet[k];
-	printf("\n");
-	while((i < fim) && ( k < fim-ini+1)){
-		vet[i] = aux[k];
-		i++;
+		//printf("%i ", vet[i]);
 		k++;
-		printf("%i ", vet[i]);
+		i++;
 	}
+
 	free(newVet);
 }
 
+//Funções de Quick Sort com primeiro elemento como pivo
 void quickSortFirst( int *vet){
 	printf("Iniciando testes com Quick Sort com o primeiro elemento como pivo \n");
 
@@ -475,6 +500,7 @@ int pivoFirst( int *vet, int ini, int fim){
 	return pivo;
 }
 
+//Funções Quick Sort com pivo aleatório
 void quickSortRand( int *vet){
 	printf("Iniciando testes com Quick Sort com um elemento qualquer de pivo \n");
 
@@ -521,7 +547,6 @@ int quickRand( int *vet, int ini, int fim){
 	return 1;
 }
 
-
 int pivoRand( int *vet, int ini, int fim){
 	int pivo = ini + rand() % (fim - ini);
 	int i, aux = 0;
@@ -545,4 +570,230 @@ int pivoRand( int *vet, int ini, int fim){
 	//printf("Troca %i[%i] por pivo %i[%i]\n", vet[ini], ini, vet[pivo], pivo);
 	//printf("Meio: %i[%i]\n", vet[pivo], pivo);
 	return pivo;
+}
+
+//Funções de Heap Sort
+void heapSort( int *vet){
+	printf("Iniciando testes com Heap Sort\n");
+
+	if( populaVetor( vet, tam1, 1)){
+		iniciaRelogio();
+		heap(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 1)){
+		iniciaRelogio();
+		heap(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 1)){
+		iniciaRelogio();
+		heap(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 1)){
+		iniciaRelogio();
+		heap(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		heap(vet, tam0);
+		finalizaRelogio();
+	}
+}
+
+void heap( int *vet, int tam){
+	int i, aux;
+	buildHeap( vet, tam);
+	for( i = tam-1; i > 0; i--){
+		aux = vet[0];
+		vet[0] = vet[i];
+		vet[i] = aux;
+		heapfy(vet, i, 0);
+	}
+}
+
+void heapfy( int *vet, int tam, int i){
+	int e, d, maior, aux;
+	e = (2*i + 1);
+	d = (2*i + 2);
+	if( (e < tam) && ( vet[e] > vet[i]) )
+		maior = e;
+	else
+		maior = i;
+
+	if( (d < tam) && ( vet[d] > vet[maior]) )
+		maior = d;
+
+	if( maior != i){
+		aux = vet[i];
+		vet[i] = vet[maior];
+		vet[maior] = aux;
+		heapfy( vet, tam, maior);
+	}
+}
+
+void buildHeap( int *vet, int tam){
+	int i;
+	for( i = tam/2; i >= 0; i--)
+		heapfy( vet, tam, i);
+}
+
+
+//Funções de Counting Sort
+void countingSort( int *vet){
+	printf("Iniciando testes com Heap Sort\n");
+
+	if( populaVetor( vet, tam1, 1)){
+		iniciaRelogio();
+		countSort(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 1)){
+		iniciaRelogio();
+		countSort(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 1)){
+		iniciaRelogio();
+		countSort(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 1)){
+		iniciaRelogio();
+		countSort(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		countSort(vet, tam0);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		countSort(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		countSort(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		countSort(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		countSort(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		countSort(vet, tam0);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		countSort(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		countSort(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		countSort(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		countSort(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		countSort(vet, tam0);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		countSort(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		countSort(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		countSort(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		countSort(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
+		iniciaRelogio();
+		countSort(vet, tam0);
+		finalizaRelogio();
+	}
+}
+
+void countSort( int *vet, int tam){
+	int i, k;
+	int maior = 0;
+	int *aux;
+	for( i = 0; i < tam; i++){
+		if( vet[i] > maior)
+			maior = vet[i];
+	}
+	aux = malloc( (maior+1) * sizeof(int));
+	for( i = 0; i < (maior+1); i++)
+		aux[i] = 0;
+	for( i = 0; i < tam; i++)
+		aux[ vet[i]]++;
+	k = 0;
+	//for( i =0; i < (maior+1); i++)
+	//	printf(" %i[%i]", aux[i], i);
+	//printf("\n");
+	for( i = 0; i < (maior+1); i++){
+		while((aux[i] > 0) && ( k < tam)){
+			vet[k] = i;
+			aux[i]--;
+			k++;
+		}
+	}
+
+
 }
