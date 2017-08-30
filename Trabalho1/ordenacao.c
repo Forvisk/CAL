@@ -1,15 +1,26 @@
-	/*Trabalho 1 - Ordenacao
+/*Trabalho 1 - Ordenacao
 	* @autor Adriano Zanella Junior
 	* Inicio em 24/08/2017
 	* Fim em //
-	*/
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <sys/time.h>
-	#include <Windows.h>
+	* Para o dia 20/09/2017
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/time.h>
+#include <Windows.h>
 
 LARGE_INTEGER inicio, fim, tempo, frequencia;
+/*
+struct Nodo{
+	int num;
+	struct Nodo *next;
+};
+typedef struct Nodo nodo;
 
+void insere( int num, nodo *Lista);
+int remover( nodo *Lista);
+*/
 void iniciaRelogio();
 void finalizaRelogio();
 int time_diff(struct timeval x , struct timeval y);
@@ -42,6 +53,8 @@ void buildHeap( int *vet, int tam);
 void countingSort( int *vet);
 void countSort( int *vet, int tam);
 
+void bucketSort( int *vet);
+void bucket( int *vet, int tam);
 
 int static tam0 = 1000000;
 int static tam1 = 25000;
@@ -51,13 +64,11 @@ int static tam4 = 100000;
 
 int main(){
 
-
 	time_t t;
 	int *vet, i;
 	srand((unsigned) time(&t));
 
 	printf("Iniciando Ordenacoes\n");
-		printf("%i", (5 - 2) / 2);
 	vet = malloc( tam0 * sizeof(int));
 
 	/*
@@ -82,10 +93,12 @@ int main(){
 	printf("\n...\n");
 	countingSort(vet);
 	printf("\n...\n");
+	bucketSort(vet);
+	printf("\n...\n");
 	
 	*/
 
-	
+	/*
 	printf("\n Populando\n");
 	populaVetor( vet, 500, 3);
 	for( i = 0; i < 500; i++)
@@ -147,7 +160,7 @@ int main(){
 	for( i = 0; i < 500; i++)
 		printf(" %i ", vet[i]);
 
-		printf("\n Populando\n");
+	printf("\n Populando\n");
 	populaVetor( vet, 500, 3);
 	for( i = 0; i < 500; i++)
 		printf(" %i ", vet[i]);
@@ -157,8 +170,20 @@ int main(){
 	for( i = 0; i < 500; i++)
 		printf(" %i ", vet[i]);
 
+	printf("\n Populando\n");
+	populaVetor( vet, 500, 3);
+	for( i = 0; i < 500; i++)
+		printf(" %i ", vet[i]);
+	printf("\nBucket Sort");
+	bucket(vet, 500);
+	printf("\n Ordenado\n");
+	for( i = 0; i < 500; i++)
+		printf(" %i ", vet[i]);
+	*/
+	
 	free(vet);
 
+	printf("\nFinalizando Ordenacoes\n");
 	return 0;
 }
 
@@ -222,6 +247,8 @@ int populaVetor( int *vet, int tam, int tipo){
 		break;
 		default:
 		printf("\nErro!\n");
+		for( i = 0; i < tam; i++)
+			vet[i] = 0;
 		return 0;
 	}
 		/*
@@ -236,6 +263,7 @@ int populaVetor( int *vet, int tam, int tipo){
 void bubbleSort( int *vet){
 	printf("Iniciando testes com Bubble Sort\n");
 
+	//Vetor ordenado
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
 		bubble(vet, tam1);
@@ -265,6 +293,99 @@ void bubbleSort( int *vet){
 		bubble(vet, tam0);
 		finalizaRelogio();
 	}
+
+	//Vetor desordenado
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		bubble(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		bubble(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		bubble(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		bubble(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		bubble(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		bubble(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		bubble(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		bubble(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		bubble(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		bubble(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio com valor muito alto
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		bubble(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		bubble(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		bubble(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4,4)){
+		iniciaRelogio();
+		bubble(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
+		iniciaRelogio();
+		bubble(vet, tam0);
+		finalizaRelogio();
+	}
 }
 
 void bubble( int *vet, int tam){
@@ -284,6 +405,7 @@ void bubble( int *vet, int tam){
 void insertSort( int *vet){
 	printf("Iniciando testes com Insert Sort\n");
 
+	//Vetor ordenado
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
 		insert(vet, tam1);
@@ -313,6 +435,99 @@ void insertSort( int *vet){
 		insert(vet, tam0);
 		finalizaRelogio();
 	}
+
+	//Vetor desordenado
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		insert(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		insert(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		insert(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		insert(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		insert(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		insert(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		insert(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		insert(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		insert(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		insert(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio com valor muito alto
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		insert(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		insert(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		insert(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		insert(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
+		iniciaRelogio();
+		insert(vet, tam0);
+		finalizaRelogio();
+	}
 }
 
 void insert( int *vet, int tam){
@@ -332,6 +547,7 @@ void insert( int *vet, int tam){
 void mergeSort( int *vet){
 	printf("Iniciando testes com Merge Sort\n");
 
+	//Vetor ordenado
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
 		merge(vet, 0, tam1);
@@ -357,6 +573,99 @@ void mergeSort( int *vet){
 	}
 
 	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		merge(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor desordenado
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		merge(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		merge(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		merge(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		merge(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		merge(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aletorio
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		merge(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		merge(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		merge(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		merge(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		merge(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio com valor muito alto
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		merge(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		merge(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		merge(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		merge(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
 		iniciaRelogio();
 		merge(vet, 0, tam0);
 		finalizaRelogio();
@@ -439,6 +748,7 @@ void doMerge( int *vet, int ini, int meio, int fim){
 void quickSortFirst( int *vet){
 	printf("Iniciando testes com Quick Sort com o primeiro elemento como pivo \n");
 
+	//Vetor Ordenado
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
 		quickFirst(vet, 0, tam1);
@@ -464,6 +774,99 @@ void quickSortFirst( int *vet){
 	}
 
 	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor Desordenado
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio com um valor alto no meio
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		quickFirst(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
 		iniciaRelogio();
 		quickFirst(vet, 0, tam0);
 		finalizaRelogio();
@@ -504,6 +907,7 @@ int pivoFirst( int *vet, int ini, int fim){
 void quickSortRand( int *vet){
 	printf("Iniciando testes com Quick Sort com um elemento qualquer de pivo \n");
 
+	//Vetor ordenado
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
 		quickRand(vet, 0, tam1);
@@ -529,6 +933,99 @@ void quickSortRand( int *vet){
 	}
 
 	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor desordenado
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio com um valor muito alto
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		quickRand(vet, 0, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
 		iniciaRelogio();
 		quickRand(vet, 0, tam0);
 		finalizaRelogio();
@@ -576,6 +1073,7 @@ int pivoRand( int *vet, int ini, int fim){
 void heapSort( int *vet){
 	printf("Iniciando testes com Heap Sort\n");
 
+	//Vetor ordenado
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
 		heap(vet, tam1);
@@ -601,6 +1099,99 @@ void heapSort( int *vet){
 	}
 
 	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		heap(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor desordenado
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		heap(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		heap(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		heap(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		heap(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		heap(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		heap(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		heap(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		heap(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		heap(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		heap(vet, tam0);
+		finalizaRelogio();
+	}
+
+	//Vetor aleatorio com valor muito alto
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		heap(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		heap(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		heap(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		heap(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
 		iniciaRelogio();
 		heap(vet, tam0);
 		finalizaRelogio();
@@ -647,7 +1238,7 @@ void buildHeap( int *vet, int tam){
 
 //Funções de Counting Sort
 void countingSort( int *vet){
-	printf("Iniciando testes com Heap Sort\n");
+	printf("Iniciando testes com Counting Sort\n");
 
 	if( populaVetor( vet, tam1, 1)){
 		iniciaRelogio();
@@ -794,6 +1385,203 @@ void countSort( int *vet, int tam){
 			k++;
 		}
 	}
+	free(aux);
+}
 
+//Funcoes de Bucket Sort
+void bucketSort( int *vet){
+	printf("Iniciando testes com Bucket Sort\n");
+
+	if( populaVetor( vet, tam1, 1)){
+		iniciaRelogio();
+		bucket(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 1)){
+		iniciaRelogio();
+		bucket(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 1)){
+		iniciaRelogio();
+		bucket(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 1)){
+		iniciaRelogio();
+		bucket(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 1)){
+		iniciaRelogio();
+		bucket(vet, tam0);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam1, 2)){
+		iniciaRelogio();
+		bucket(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 2)){
+		iniciaRelogio();
+		bucket(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 2)){
+		iniciaRelogio();
+		bucket(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 2)){
+		iniciaRelogio();
+		bucket(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 2)){
+		iniciaRelogio();
+		bucket(vet, tam0);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam1, 3)){
+		iniciaRelogio();
+		bucket(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 3)){
+		iniciaRelogio();
+		bucket(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 3)){
+		iniciaRelogio();
+		bucket(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 3)){
+		iniciaRelogio();
+		bucket(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 3)){
+		iniciaRelogio();
+		bucket(vet, tam0);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam1, 4)){
+		iniciaRelogio();
+		bucket(vet, tam1);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam2, 4)){
+		iniciaRelogio();
+		bucket(vet, tam2);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam3, 4)){
+		iniciaRelogio();
+		bucket(vet, tam3);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam4, 4)){
+		iniciaRelogio();
+		bucket(vet, tam4);
+		finalizaRelogio();
+	}
+
+	if( populaVetor( vet, tam0, 4)){
+		iniciaRelogio();
+		bucket(vet, tam0);
+		finalizaRelogio();
+	}
+}
+
+void bucket( int *vet, int tam){
+	int i, j;
+	int *count;
+	int max = 0;
+
+	for( i = 0; i < tam; i++)
+		if( vet[i] > max)
+			max = vet[i];
+	max++;
+	count = malloc(max * sizeof(int));
+
+	for( i = 0; i < max; i++)
+		count[i] = 0;
+
+	for( i = 0; i < tam; i++){
+		count[ vet[i]]++;
+	}
+
+	for( i = 0, j = 0; i < max; i++)
+		for(; count[i] > 0; count[i]--){
+			vet[j] = i;
+			j++;
+		}
+	free(count);
+}
+/*
+void bucket( int *vet, int tam){
+	int i;
+	nodo *Lista[15], *oi;
+	for( i = 0; i < 15; i++)
+		Lista[i] = NULL;
+	insere( 3, Lista[3]);
+	printf("here\n");
+	oi = Lista[3];
+	printf("\n%i", oi->num);
+	printf("\nTeste remocao %i", remover(Lista[0]));
+	printf("\nTeste remocao %i\n", remover(Lista[3]));
 
 }
+
+void insere( int num, nodo *Lista){
+	nodo *new;
+	nodo *p = NULL;
+	new = ( nodo *)malloc( sizeof(nodo));
+	new->next = NULL;
+	new->num = num;
+	if( Lista == NULL){
+		printf("\nPrimeiro elemento");
+		Lista = new;
+	}else{
+		p = Lista;
+		while( p == NULL){
+			p = p->next;
+		}
+		p->next = new;
+	}
+}
+int remover( nodo *Lista){
+	nodo *p, *pF;
+	int val;
+	if( Lista == NULL)
+		return -1;
+	while( p->next != NULL)
+		p = p->next;
+	pF = p->next;
+	val = pF->num;
+	p->next = NULL;
+	free(pF);
+
+	return val;
+}
+*/
