@@ -76,26 +76,24 @@ int main(){
 	populaVetor( vet, tam0, 2);
 	populaVetor( vet, tam0, 3);
 	populaVetor( vet, tam0, 4);
-	
-	//bubbleSort( vet);
-	//printf("\n...\n");
-	//insertSort(vet);
-	//printf("\n...\n");
-	//mergeSort(vet);
-	//printf("\n...\n");
-	//quickSortFirst( vet);
-	//printf("\n...\n");
-	//quickSortRand(vet);
-	//printf("\n...\n");
-	//heapSort( vet);
-	//printf("\n...\n");
-	countingSort(vet);
+	*/
+	bubbleSort( vet);
+	printf("\n...\n");
+	insertSort(vet);
+	printf("\n...\n");
+	mergeSort(vet);
+	printf("\n...\n");
+	quickSortFirst( vet);
+	printf("\n...\n");
+	quickSortRand(vet);
+	printf("\n...\n");
+	heapSort( vet);
 	printf("\n...\n");
 	countingSort(vet);
 	printf("\n...\n");
 	bucketSort(vet);
 	printf("\n...\n");
-	
+	/*
 	*/
 
 	/*

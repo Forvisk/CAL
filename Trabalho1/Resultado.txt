@@ -1,0 +1,757 @@
+Microsoft Windows [versão 10.0.14393]
+(c) 2016 Microsoft Corporation. Todos os direitos reservados.
+
+
+C:\Users\adria\Desktop\BCC\CAL\Trabalho1>ordenaF.exe
+Iniciando Ordenacoes
+Iniciando testes com Bubble Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 837640 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 3222419 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 7245892 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 12808639 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 1281806897 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 778379 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 3159687 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 7082081 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 12500966 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 1286047903 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 936418 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 3528289 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 7735080 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 13564904 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 1329603899 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 937695 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 3511379 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 7737049 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 13531616 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 1319471808 us
+
+...
+
+...
+Iniciando testes com Insert Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 823559 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 3252011 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 7281296 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 12963239 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 1311260196 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 813530 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 3233268 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 7255353 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 12943177 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 1319133793 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 1148595 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 4620112 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 10383175 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 18447502 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 1861537626 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 1150867 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 4615090 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 10356727 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 18392595 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 1866707352 us
+
+...
+
+...
+Iniciando testes com Merge Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 6313 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 10546 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 17120 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 21259 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 227652 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 5081 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 10785 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 15802 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 20261 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 226395 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 6609 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 13118 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 19914 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 27787 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 291105 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 6575 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 12939 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 20251 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 26554 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 289490 us
+
+...
+
+...
+Iniciando testes com Quick Sort com o primeiro elemento como pivo
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 874021 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 3486092 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 7846212 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 14011649 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 1410976203 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 873117 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 3495570 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 7854702 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 13909531 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 1421831393 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 3761 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 9470 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 16796 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 24756 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 1510502 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 3629 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 9202 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 16081 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 24865 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 1509035 us
+
+...
+
+...
+Iniciando testes com Quick Sort com um elemento qualquer de pivo
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 3133 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 6307 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 9857 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 12793 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 211602 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 3097 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 6234 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 9069 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 12888 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 200440 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 4139 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 10420 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 17240 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 27175 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 1513615 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 4083 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 9885 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 17166 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 26406 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 1506341 us
+
+...
+
+...
+Iniciando testes com Heap Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 5004 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 10134 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 15737 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 22850 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 255096 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 5045 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 10460 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 15763 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 21948 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 257888 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 5992 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 12240 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 19089 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 25777 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 318195 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 5994 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 12455 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 19053 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 25853 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 312946 us
+
+...
+
+...
+Iniciando testes com Counting Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 389 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 725 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 996 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 1316 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 20094 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 385 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 648 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 1005 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 1477 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 19979 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 269 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 506 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 724 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 1006 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 9452 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 615062 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 630607 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 624284 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 636274 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 632228 us
+
+...
+
+...
+Iniciando testes com Counting Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 403 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 897 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 1023 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 1346 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 21751 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 414 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 701 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 1004 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 1761 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 20335 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 268 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 558 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 766 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 965 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 9626 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 612085 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 620291 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 615634 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 610761 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 625363 us
+
+...
+
+...
+Iniciando testes com Bucket Sort
+Iniciando vetor de 25000 numeros crescente.
+Tempo da ordenacao: 406 us
+
+...
+Iniciando vetor de 50000 numeros crescente.
+Tempo da ordenacao: 912 us
+
+...
+Iniciando vetor de 75000 numeros crescente.
+Tempo da ordenacao: 1015 us
+
+...
+Iniciando vetor de 100000 numeros crescente.
+Tempo da ordenacao: 1934 us
+
+...
+Iniciando vetor de 1000000 numeros crescente.
+Tempo da ordenacao: 21242 us
+
+...
+Iniciando vetor de 25000 numeros decrescente.
+Tempo da ordenacao: 411 us
+
+...
+Iniciando vetor de 50000 numeros decrescente.
+Tempo da ordenacao: 703 us
+
+...
+Iniciando vetor de 75000 numeros decrescente.
+Tempo da ordenacao: 1008 us
+
+...
+Iniciando vetor de 100000 numeros decrescente.
+Tempo da ordenacao: 1321 us
+
+...
+Iniciando vetor de 1000000 numeros decrescente.
+Tempo da ordenacao: 21753 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio.
+Tempo da ordenacao: 257 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio.
+Tempo da ordenacao: 491 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio.
+Tempo da ordenacao: 760 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio.
+Tempo da ordenacao: 993 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio.
+Tempo da ordenacao: 9236 us
+
+...
+Iniciando vetor de 25000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 598837 us
+
+...
+Iniciando vetor de 50000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 607320 us
+
+...
+Iniciando vetor de 75000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 609262 us
+
+...
+Iniciando vetor de 100000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 605931 us
+
+...
+Iniciando vetor de 1000000 numeros aleatorio com 100000000.
+Tempo da ordenacao: 618819 us
+
+...
+
+...
+
+Finalizando Ordenacoes
+
+C:\Users\adria\Desktop\BCC\CAL\Trabalho1>
