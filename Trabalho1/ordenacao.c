@@ -1536,6 +1536,7 @@ void bucket( int *vet, int tam){
 		}
 	free(count);
 }
+
 /*
 void bucket( int *vet, int tam){
 	int i;
@@ -1550,7 +1551,6 @@ void bucket( int *vet, int tam){
 	printf("\nTeste remocao %i\n", remover(Lista[3]));
 
 }
-
 void insere( int num, nodo *Lista){
 	nodo *new;
 	nodo *p = NULL;
