@@ -4,6 +4,9 @@
 //
 //  Created by Gustavo Diel on 24/08/17.
 //
+/*
+*g++ -std=gnu++0x fBruta.cpp -o brute
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +18,7 @@
 #include <vector>
 
 #include <climits>
+#include <iostream>
 
 #include <math.h>
 
@@ -46,14 +50,29 @@ double distance(Ponto *po1, Ponto *po2){
 
 int main(){
 
+    int m, n, nump = 0;
     std::vector<Ponto*> pontos;
     srand(time(NULL));
 
     const int NUMERO_DE_PONTOS = 10000;
 
+    std::cout<<"Insira a largura, altura e numero de pontos da matriz\n"<<std::endl;
+    scanf("%i %i", &m, &n);
+    do{
+        scanf("%i", &nump);
+        if(nump >= m*n)
+            printf("Digite um numero de pontos valido( < %i): ", m*n);
+    }while( nump >= m*n);
+    /*
     for (int i = 0; i < NUMERO_DE_PONTOS; i++){
         pontos.push_back(new Ponto(rand() % NUMERO_DE_PONTOS, rand() % NUMERO_DE_PONTOS));
     }
+    */
+    pontos.reserve(nump);
+    for (int i = 0; i < nump; i++){
+        pontos.push_back(new Ponto(rand() % m, rand() % n));
+    }
+
     iniciaRelogio();
     double menorDistancia = INT_MAX;
     Ponto* menor1 = nullptr;

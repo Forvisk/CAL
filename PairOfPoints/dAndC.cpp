@@ -1,9 +1,6 @@
-//
-//  main.cpp
-//  CAL
-//
-//  Created by Gustavo Diel on 24/08/17.
-//
+/*
+*	Compila: g++ -std=gnu++0x dAndC.cpp -o cpop
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -32,11 +29,16 @@ public:
 	Ponto(int a, int b){
 		this->x = a; this->y = b;
 	}
-	unsigned long int x, y;
+	int x, y;
 
 	void print(){
 		printf("P(%u, %u)\n", this->x, this->y);
 	};
+
+	int get_y(){
+		return y;
+	};
+
 };
 
 
@@ -45,6 +47,7 @@ double divideandconquest( std::vector<Ponto*> pontos, int nump);
 double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int nump);
 double brute( std::vector<Ponto*> P, int nump);
 double stripDistancia( std::vector<Ponto*> strip, int nump, double menorDistancia);
+bool stripComp_y( Ponto* p1, Ponto* p2, double dist);
 
 double distance(Ponto *po1, Ponto *po2){
 	long int dX = (po1->x - po2->x);
@@ -86,9 +89,9 @@ int main(){
 	iniciaRelogio();
 
 	menorDistancia = divideandconquest( pontos, nump);
-	printf("Menor distancia encontrada: %lf\n", menorDistancia);
 
 	finalizaRelogio();
+	printf("Menor distancia encontrada: %lf\n", menorDistancia);
 }
 
 //Funçõeos de Relógios
@@ -112,7 +115,7 @@ void finalizaRelogio(){
 
 int time_diff(struct timeval x , struct timeval y){
 	int diff;
-diff = (y.tv_sec - x.tv_sec) + 1e-6 * (y.tv_usec - x.tv_usec); /* in seconds */
+	diff = (y.tv_sec - x.tv_sec) + 1e-6 * (y.tv_usec - x.tv_usec); /* in seconds */
 	return diff;
 }
 
@@ -153,7 +156,7 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 	int meio = nump/2;
 
 	if (nump < 3){
-		printf("Exit PP2\n");
+		printf("Exit PPbrute\n");
 		return brute(Px, nump);
 	}
 
@@ -168,6 +171,7 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 			Pyd.push_back(ponto);
 	}
 
+	printf("Menor Px %i %i\n", meio, nump-meio);
 	md1 = menorDistanciaPP( Px, Pye, meio);
 	md2 = menorDistanciaPP( Px, Pyd, nump-meio);
 
@@ -180,6 +184,16 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 	for( auto ponto : Py){
 		if( abs(ponto->x - pmeio->x) < menorDistancia)
 			strip.push_back(ponto);
+	}
+
+	double stripMe = stripDistancia( strip, strip.size(), menorDistancia);
+	if( menorDistancia < stripMe){
+		printf("Exit PPMd\n");
+		return menorDistancia;
+	}
+	else{
+		printf("Exit PPStrip\n");
+		return stripMe;
 	}
 
 	printf("Exit PP\n");
@@ -202,5 +216,20 @@ double brute( std::vector<Ponto*> P, int nump){
 }
 
 double stripDistancia( std::vector<Ponto*> strip, int nump, double menorDistancia){
-	return 0;
+	double dm = menorDistancia;
+
+	//for( auto ponto = strip.begin(); ponto != std::end(strip); ++ponto){
+	for( auto ponto : strip){
+		for( auto ponto2 = ponto++; ponto2 < strip.back() && stripComp_y( ponto, ponto2, dm); ++ponto2){
+			printf("...");
+			double newd = distance( ponto, ponto2);
+			if( newd < dm)
+				dm = newd;
+		}
+	}
+	return dm;
+}
+
+bool stripComp_y( Ponto *p1, Ponto *p2, double dist){
+	return (p2->y - p1->y) < dist;
 }
