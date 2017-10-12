@@ -183,8 +183,8 @@ public:
 /*
     Propriedades da Ჶore vermelha-preta
     1 - Todos os n󳠳㯠vermelhos ou pretos
-    2 - A raiz 頰reta
-    3 - Toda folha 頰reta
+    2 - A raiz preta
+    3 - Toda folha preta
     4 - Se um n󠩠vermelho ent㯠ambos os seus filhos s㯠pretos
     5 - Para cada n󬠴odos os caminhos deste um n󠡴頡s folhas
         descendentes contꭠo mesmo n򭥲o de n󳠰retos.

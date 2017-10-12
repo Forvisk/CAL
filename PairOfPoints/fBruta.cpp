@@ -5,19 +5,25 @@
 //  Created by Gustavo Diel on 24/08/17.
 //
 
-/*
- Escreva os algoritmo Bubble Sort, Insert Sort, Merge Sort, Quick Sort, Heap Sort, Counting Sort e Bucket Sort. O algoritmo Quick Sort deve ser implementado de duas maneiras: (1) usando o primeiro elemento como pivô, (2) selecionando um elemento qualquer como pivô.
- */
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <sys/time.h>
+#include <Windows.h>
 
 #include <algorithm>
 #include <vector>
 
+#include <climits>
+
 #include <math.h>
 
-#include <sys/time.h>
+
+
+LARGE_INTEGER inicio, fim, tempo, frequencia;
+void iniciaRelogio();
+void finalizaRelogio();
+int time_diff(struct timeval x , struct timeval y);
 
 
 class Ponto {
@@ -48,7 +54,7 @@ int main(){
     for (int i = 0; i < NUMERO_DE_PONTOS; i++){
         pontos.push_back(new Ponto(rand() % NUMERO_DE_PONTOS, rand() % NUMERO_DE_PONTOS));
     }
-
+    iniciaRelogio();
     double menorDistancia = INT_MAX;
     Ponto* menor1 = nullptr;
     Ponto* menor2 = nullptr;
@@ -65,28 +71,34 @@ int main(){
             }
         }
     }
-
+    finalizaRelogio();
     printf("Menor distancia encontrada: %lf\n", menorDistancia);
     menor1->print();
     menor2->print();
 
 }
 
+//Funçõeos de Relógios
+void iniciaRelogio(){
+    // Inicia o relógio para contar o tempo
+    QueryPerformanceFrequency( &frequencia );
+    QueryPerformanceCounter( &inicio );
+}
 
+void finalizaRelogio(){
+    // Interrompe o relógio e calcula o número de microsegundos da operação
+    QueryPerformanceCounter( &fim );
+    tempo.QuadPart = fim.QuadPart - inicio.QuadPart;
+    tempo.QuadPart *= 1000000;
+    tempo.QuadPart /= frequencia.QuadPart;
+    printf("Tempo da busca: %li us\n" , tempo );
+        //printf("Relogio parado... Pressione qualquer tecla para continuar\n" );
+        //getchar();
+    printf("\n...\n");
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+int time_diff(struct timeval x , struct timeval y){
+    int diff;
+        diff = (y.tv_sec - x.tv_sec) + 1e-6 * (y.tv_usec - x.tv_usec); /* in seconds */
+    return diff;
+}
