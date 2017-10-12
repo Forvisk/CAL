@@ -79,7 +79,7 @@ int main(){
 			printf("Digite um numero de pontos valido( < %i): ", m*n);
 	}while( nump >= m*n);
 
-	pontos.reserve(nump);
+	//pontos.reserve(nump);
 	for (int i = 0; i < nump; i++){
 		pontos.push_back(new Ponto(rand() % m, rand() % n));
 		//pontos[i] = new Ponto( rand() % m, rand() % n);
@@ -92,7 +92,7 @@ int main(){
 
 	finalizaRelogio();
 	printf("Menor distancia encontrada: %lf\n", menorDistancia);
-	brute( pontos, nump);
+	//brute( pontos, nump);
 }
 
 //Funçõeos de Relógios
@@ -157,7 +157,7 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 	int meio = nump/2;
 
 	if (nump < 3){
-		printf("Exit PPbrute %4i", nump);
+		//printf("Exit PPbrute %4i", nump);
 		return brute(Px, nump);
 	}
 
@@ -165,14 +165,16 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 	std::vector<Ponto*> Pyd;
 	std::vector<Ponto*> Pye;
 
+
+	printf("Loop Tam: %4i\n", nump);
 	for( auto ponto : Py){
-		if( ponto->x < pmeio->x)
+		if( ponto->x <= pmeio->x)
 			Pye.push_back(ponto);
 		else
 			Pyd.push_back(ponto);
 	}
 
-	printf("Menor Px %4i %4i\n", meio, nump-meio);
+	//printf("Menor Px %4i %4i\n", meio, nump-meio);
 	md1 = menorDistanciaPP( Px, Pye, meio);
 	md2 = menorDistanciaPP( Px, Pyd, nump-meio);
 
@@ -189,15 +191,15 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 
 	double stripMe = stripDistancia( strip, menorDistancia);
 	if( menorDistancia < stripMe){
-		printf("Exit PPMd    %4i : %lf\n", nump, menorDistancia);
+		//printf("Exit PPMd    %4i : %lf\n", nump, menorDistancia);
 		return menorDistancia;
 	}
 	else{
-		printf("Exit PPStrip %4i : %lf\n", nump, stripMe);
+		//printf("Exit PPStrip %4i : %lf\n", nump, stripMe);
 		return stripMe;
 	}
 
-	printf("Exit PP      %4i\n", nump);
+	//printf("Exit PP      %4i\n", nump);
 	return menorDistancia;
 }
 
@@ -205,6 +207,7 @@ double brute( std::vector<Ponto*> P, int nump){
 	double menorDistancia = INT_MAX;
     Ponto* menor1 = nullptr;
     Ponto* menor2 = nullptr;
+    printf("Loop brute tam: %i\n", nump*nump);
 	for (auto ponto : P){
 		for (auto ponto2 : P){
 			if (ponto != ponto2 ){
@@ -217,9 +220,9 @@ double brute( std::vector<Ponto*> P, int nump){
 			}
 		}
 	}
-	printf(" : %lf\n", menorDistancia);
-    menor1->print();
-    menor2->print();
+	//printf(" : %lf\n", menorDistancia);
+    //menor1->print();
+    //menor2->print();
 	return menorDistancia;
 }
 
@@ -229,7 +232,7 @@ double stripDistancia( std::vector<Ponto*> strip, double menorDistancia){
 	//for( auto ponto = strip.begin(); ponto != std::end(strip); ++ponto){
 	for( auto ponto : strip){
 		for( auto ponto2 = ponto++; ponto2 < strip.back() && stripComp_y( ponto, ponto2, dm); ++ponto2){
-			printf("...");
+			//printf("...");
 			double newd = distance( ponto, ponto2);
 			if( newd < dm)
 				dm = newd;
