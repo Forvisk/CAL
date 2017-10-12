@@ -46,7 +46,7 @@ float min( float x, float y);
 double divideandconquest( std::vector<Ponto*> pontos, int nump);
 double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int nump);
 double brute( std::vector<Ponto*> P, int nump);
-double stripDistancia( std::vector<Ponto*> strip, int nump, double menorDistancia);
+double stripDistancia( std::vector<Ponto*> strip, double menorDistancia);
 bool stripComp_y( Ponto* p1, Ponto* p2, double dist);
 
 double distance(Ponto *po1, Ponto *po2){
@@ -92,6 +92,7 @@ int main(){
 
 	finalizaRelogio();
 	printf("Menor distancia encontrada: %lf\n", menorDistancia);
+	brute( pontos, nump);
 }
 
 //Funçõeos de Relógios
@@ -156,7 +157,7 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 	int meio = nump/2;
 
 	if (nump < 3){
-		printf("Exit PPbrute\n");
+		printf("Exit PPbrute %4i", nump);
 		return brute(Px, nump);
 	}
 
@@ -171,7 +172,7 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 			Pyd.push_back(ponto);
 	}
 
-	printf("Menor Px %i %i\n", meio, nump-meio);
+	printf("Menor Px %4i %4i\n", meio, nump-meio);
 	md1 = menorDistanciaPP( Px, Pye, meio);
 	md2 = menorDistanciaPP( Px, Pyd, nump-meio);
 
@@ -186,36 +187,43 @@ double menorDistanciaPP( std::vector<Ponto*> Px, std::vector<Ponto*> Py, int num
 			strip.push_back(ponto);
 	}
 
-	double stripMe = stripDistancia( strip, strip.size(), menorDistancia);
+	double stripMe = stripDistancia( strip, menorDistancia);
 	if( menorDistancia < stripMe){
-		printf("Exit PPMd\n");
+		printf("Exit PPMd    %4i : %lf\n", nump, menorDistancia);
 		return menorDistancia;
 	}
 	else{
-		printf("Exit PPStrip\n");
+		printf("Exit PPStrip %4i : %lf\n", nump, stripMe);
 		return stripMe;
 	}
 
-	printf("Exit PP\n");
+	printf("Exit PP      %4i\n", nump);
 	return menorDistancia;
 }
 
 double brute( std::vector<Ponto*> P, int nump){
 	double menorDistancia = INT_MAX;
+    Ponto* menor1 = nullptr;
+    Ponto* menor2 = nullptr;
 	for (auto ponto : P){
 		for (auto ponto2 : P){
 			if (ponto != ponto2 ){
 				double distancia = distance(ponto, ponto2);
 				if (distancia < menorDistancia){
 					menorDistancia = distancia;
+                    menor1 = ponto;
+                    menor2 = ponto2;
 				}
 			}
 		}
 	}
+	printf(" : %lf\n", menorDistancia);
+    menor1->print();
+    menor2->print();
 	return menorDistancia;
 }
 
-double stripDistancia( std::vector<Ponto*> strip, int nump, double menorDistancia){
+double stripDistancia( std::vector<Ponto*> strip, double menorDistancia){
 	double dm = menorDistancia;
 
 	//for( auto ponto = strip.begin(); ponto != std::end(strip); ++ponto){
