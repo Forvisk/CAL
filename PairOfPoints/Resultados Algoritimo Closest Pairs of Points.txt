@@ -1,0 +1,74 @@
+Resultados Algoritimo Closest Pairs of Points
+
+
+Usando Forca Bruta na faixa proxima ao meio
+T = O(n**2)
+E = O(n)
+
+Testando com 10 pontos. Testando forca bruta Tempo da busca: 12 us
+Menor distancia encontrada por Forca Bruta: 30.232433
+Testando dividir e conquistar Tempo da busca: 9 us
+Menor distancia encontrada por Dividir e Conquistar: 30.232433
+
+
+Testando com 100 pontos. Testando forca bruta Tempo da busca: 370 us
+Menor distancia encontrada por Forca Bruta: 19.646883
+Testando dividir e conquistar Tempo da busca: 128 us
+Menor distancia encontrada por Dividir e Conquistar: 19.646883
+
+
+Testando com 1000 pontos. Testando forca bruta Tempo da busca: 32723 us
+Menor distancia encontrada por Forca Bruta: 21.633308
+Testando dividir e conquistar Tempo da busca: 1770 us
+Menor distancia encontrada por Dividir e Conquistar: 21.633308
+
+
+Testando com 10000 pontos. Testando forca bruta Tempo da busca: 3098538 us
+Menor distancia encontrada por Forca Bruta: 2.236068
+Testando dividir e conquistar Tempo da busca: 26889 us
+Menor distancia encontrada por Dividir e Conquistar: 2.236068
+
+
+Testando com 50000 pontos. Testando forca bruta Tempo da busca: 77075612 us
+Menor distancia encontrada por Forca Bruta: 1.000000
+Testando dividir e conquistar Tempo da busca: 188163 us
+Menor distancia encontrada por Dividir e Conquistar: 1.000000
+
+
+
+
+
+/*****************************************************************/
+Usando implementacao eficaz para a faixa do meio
+T = O(n*log n)
+E = O(n)
+
+
+Testando com 10 pontos. Testando forca bruta Tempo da busca: 10 us
+Menor distancia encontrada por Forca Bruta: 15.264338
+Testando dividir e conquistar Tempo da busca: 7 us
+Menor distancia encontrada por Dividir e Conquistar: 15.264338
+
+
+Testando com 100 pontos. Testando forca bruta Tempo da busca: 369 us
+Menor distancia encontrada por Forca Bruta: 8.602325
+Testando dividir e conquistar Tempo da busca: 81 us
+Menor distancia encontrada por Dividir e Conquistar: 8.602325
+
+
+Testando com 1000 pontos. Testando forca bruta Tempo da busca: 38645 us
+Menor distancia encontrada por Forca Bruta: 18.681542
+Testando dividir e conquistar Tempo da busca: 1156 us
+Menor distancia encontrada por Dividir e Conquistar: 18.681542
+
+
+Testando com 10000 pontos. Testando forca bruta Tempo da busca: 3167502 us
+Menor distancia encontrada por Forca Bruta: 1.414214
+Testando dividir e conquistar Tempo da busca: 10167 us
+Menor distancia encontrada por Dividir e Conquistar: 1.414214
+
+
+Testando com 50000 pontos. Testando forca bruta Tempo da busca: 80795696 us
+Menor distancia encontrada por Forca Bruta: 1.000000
+Testando dividir e conquistar Tempo da busca: 61297 us
+Menor distancia encontrada por Dividir e Conquistar: 1.000000

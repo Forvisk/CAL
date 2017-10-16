@@ -1,7 +1,8 @@
 // CALPontos.cpp : Defines the entry point for the console application.
 //
+// g++ -std=gnu++0x final.cpp -o pfinal
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,15 +14,32 @@
 #include <iostream>
 
 #include <math.h>
+#include <algorithm>
 
-// Classe bem simples para testar os algoritmos
+using std::min;
+
+// Struct bem simples para testar os algoritmos
 typedef struct Ponto {
 	int x, y, i;
 } Ponto;
 
+//	Mostra o ponto ( T = O(1))
 void print(Ponto ponto) {
 	printf("P(%u, %u)\n", ponto.x, ponto.y);
 };
+
+//Funcoes auxiliares e de distancia
+int compareX(const void* a, const void* b)	//	O(1)
+{
+	Ponto *p1 = (Ponto *)a, *p2 = (Ponto *)b;
+	return (p1->x - p2->x);
+}
+
+int compareY(const void* a, const void* b)	//	O(1)
+{
+	Ponto *p1 = (Ponto *)a, *p2 = (Ponto *)b;
+	return (p1->y - p2->y);
+}
 
 // Algunns defines
 LARGE_INTEGER inicio, fim, tempo, frequencia;
@@ -33,24 +51,26 @@ int time_diff(struct timeval x, struct timeval y);
 Ponto menor1;
 Ponto menor2;
 
+// Calcula a distancia entre dois pontos
 double distance(Ponto po1, Ponto po2) {
-	int dX = (po1.x - po2.x);
-	int dY = (po1.y - po2.y);
-	return sqrt(dX*dX + dY*dY);
+	int dX = (po1.x - po2.x);	// O(1)
+	int dY = (po1.y - po2.y);	// O(1)
+	return sqrt(dX*dX + dY*dY);	//Theta(log n)
 }
 
 /* Funcao 1
  * Forca Bruta
  */
 
-double bruteForce(Ponto* pontos, int size) {
+double bruteForce(Ponto* pontos, int size) {	// T = O(n**2)	E = O(1)
 	double distancia = INT_MAX;
-	for (auto i = 0; i < size; i++) {
-		for (auto j = 0; j < size; j++) {
+	for (auto i = 0; i < size; i++) {	// O(n)
+		//for (auto j = 0; j < size; j++) {	//	O(n)
+		for (int j = i+1; j < size; j++) {	//	Soma( i= 1->n, n-i )
 			Ponto p1 = pontos[i];
 			Ponto p2 = pontos[j];
 			if (p1.i != p2.i) {
-				double dis = distance(p1, p2);
+				double dis = distance(p1, p2);	//	Theta(log n)
 				if (dis < distancia) {
 					distancia = dis;
 				}
@@ -61,41 +81,49 @@ double bruteForce(Ponto* pontos, int size) {
 }
 
 /* Funcao 2
- * Dividir e Conquistar
+ * Distancia da faixa do meio
  */
-
-
-int compareX(const void* a, const void* b)
-{
-	Ponto *p1 = (Ponto *)a, *p2 = (Ponto *)b;
-	return (p1->x - p2->x);
+double FaixaForce(Ponto* pontos, int size) {	// T = O(n**2)	E = O(1)
+	double distancia = INT_MAX;
+	for (auto i = 0; i < size; i++) {	// O(n)
+		//for (auto j = 0; j < size; j++) {	//	O(n)
+		for (int j = i+1; j < size && (pontos[j].y - pontos[i].y) <= distancia; j++) {	//	Soma( i= 1->n, n-i )
+		//for (int j = i+1; j < size; j++) {
+			Ponto p1 = pontos[i];
+			Ponto p2 = pontos[j];
+			if (p1.i != p2.i) {
+				double dis = distance(p1, p2);	//	Theta(log n)
+				if (dis < distancia) {
+					distancia = dis;
+				}
+			}
+		}
+	}
+	return distancia;
 }
-
-int compareY(const void* a, const void* b)
-{
-	Ponto *p1 = (Ponto *)a, *p2 = (Ponto *)b;
-	return (p1->y - p2->y);
-}
-
 
 /* Funcao 3
 * Meu dividir
+*	E(n) = 3O(n) + E(n/2)
+*	T(n) = 2T(n/2) + O(n**2) 
+*	Pelo teorema mestre
+*	T(n) = O(n**2)
+*	E(n) = O(n)
 */
-
-double divideAndConquer(Ponto* Px, Ponto* Py, int size) {
+double divideAndConquer(Ponto* Px, Ponto* Py, int size) {	//	T(n) = 2T(n/2)	+ O(1) + O(n) + O(n**2) = 2T(n/2) + O(n**2) 
 	int meio = size / 2;
 	if (meio <= 3) {
-		return bruteForce(Px, size);
+		return bruteForce(Px, size);	// T = O(n**2) -> n <= 7 -> T = O(1) -> max 49 iteracoes
 	}
 
 	Ponto mid = Px[meio];
 
-	Ponto* meio1 = (Ponto*)malloc(sizeof(Ponto) * size);
-	Ponto* meio2 = (Ponto*)malloc(sizeof(Ponto) * size);
+	Ponto* meio1 = (Ponto*)malloc(sizeof(Ponto) * size);	//	E = O(n)
+	Ponto* meio2 = (Ponto*)malloc(sizeof(Ponto) * size);	//	E = O(n)
 
 	int m1Counter = 0, m2Counter = 0;
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {	// O(n)
 		if (Py[i].x <= mid.x) {
 			meio1[m1Counter++] = Py[i];
 		}
@@ -104,42 +132,42 @@ double divideAndConquer(Ponto* Px, Ponto* Py, int size) {
 		}
 	}
 
-	double d1 = divideAndConquer(Px, meio1, meio);
-	double d2 = divideAndConquer(Px + meio, meio2, size - meio);
+	double d1 = divideAndConquer(Px, meio1, meio);	//	T(n/2)	E(n/2)
+	double d2 = divideAndConquer(Px + meio, meio2, size - meio);	//	T(n/2)	E(n/2)
 
 	double menor = min(d1, d2);
 
-	Ponto* strip = (Ponto*)malloc(sizeof(Ponto) * size);
+	Ponto* strip = (Ponto*)malloc(sizeof(Ponto) * size);	//	E = O(n)
 	int stripCounter = 0;
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++) {	// O(n)
 		Ponto p = Py[i];
 		if (abs(p.x - mid.x) < menor) {
 			strip[stripCounter++] = p;
 		}
 	}
 
-	double dStrip = bruteForce(strip, stripCounter);
+	double dStrip = FaixaForce(strip, stripCounter);	//	O(n**2)		E = O(1)
 
-	return min(dStrip, menor);
+	return min(dStrip, menor);	//	O(1)
 }
 
-double dividi(Ponto* pontos, int size) {
+double dividi(Ponto* pontos, int size) {	//	T(n) = O(n) + 2O(n*log n) + O(n**2) = O(n*log n) + O(n**2)
 	double menorDistancia = INT_MAX;
 	int i, j;
 
 	Ponto* Px = (Ponto*)malloc(sizeof(Ponto) * size);
 	Ponto* Py = (Ponto*)malloc(sizeof(Ponto) * size);
 
-	for (auto i = 0; i < size; i++) {
+	for (auto i = 0; i < size; i++) {	//	O(n)
 		Px[i] = pontos[i];
 		Py[i] = pontos[i];
 	}
 
-	std::qsort(Px, size, sizeof(Ponto), compareX);
-	std::qsort(Py, size, sizeof(Ponto), compareY);
+	std::qsort(Px, size, sizeof(Ponto), compareX);	//	O(n*log n)
+	std::qsort(Py, size, sizeof(Ponto), compareY);	//	O(n*log n)
 
 
-	return divideAndConquer(Px, Py, size);
+	return divideAndConquer(Px, Py, size);	//	T = O(n**2)
 }
 
 int main() {
