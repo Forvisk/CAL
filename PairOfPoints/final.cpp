@@ -91,12 +91,12 @@ double FaixaForce(Ponto* pontos, int size) {	// T = O(n**2)	E = O(1)
 		//for (int j = i+1; j < size; j++) {
 			Ponto p1 = pontos[i];
 			Ponto p2 = pontos[j];
-			if (p1.i != p2.i) {
-				double dis = distance(p1, p2);	//	Theta(log n)
-				if (dis < distancia) {
-					distancia = dis;
-				}
+			//if (p1.i != p2.i) {
+			double dis = distance(p1, p2);	//	Theta(log n)
+			if (dis < distancia) {
+				distancia = dis;
 			}
+			//}
 		}
 	}
 	return distancia;
@@ -110,7 +110,7 @@ double FaixaForce(Ponto* pontos, int size) {	// T = O(n**2)	E = O(1)
 *	T(n) = O(n**2)
 *	E(n) = O(n)
 */
-double divideAndConquer(Ponto* Px, Ponto* Py, int size) {	//	T(n) = 2T(n/2)	+ O(1) + O(n) + O(n**2) = 2T(n/2) + O(n**2) 
+double divideAndConquer(Ponto* Px, Ponto* Py, int size) {	//	T(n) = 2T(n/2)	+ O(1) + O(n) + O(n log n) = 2T(n/2) + O(n log n)
 	int meio = size / 2;
 	if (meio <= 3) {
 		return bruteForce(Px, size);	// T = O(n**2) -> n <= 7 -> T = O(1) -> max 49 iteracoes
@@ -146,12 +146,12 @@ double divideAndConquer(Ponto* Px, Ponto* Py, int size) {	//	T(n) = 2T(n/2)	+ O(
 		}
 	}
 
-	double dStrip = FaixaForce(strip, stripCounter);	//	O(n**2)		E = O(1)
+	double dStrip = FaixaForce(strip, stripCounter);	//	O(n)	E = O(1)
 
 	return min(dStrip, menor);	//	O(1)
 }
 
-double dividi(Ponto* pontos, int size) {	//	T(n) = O(n) + 2O(n*log n) + O(n**2) = O(n*log n) + O(n**2)
+double dividi(Ponto* pontos, int size) {	//	T(n) = O(n) + 2O(n*log n) = O(n*log n)
 	double menorDistancia = INT_MAX;
 	int i, j;
 
