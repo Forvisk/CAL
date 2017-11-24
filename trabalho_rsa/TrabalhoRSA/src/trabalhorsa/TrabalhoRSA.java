@@ -198,7 +198,8 @@ public class TrabalhoRSA {
         // TODO code application logic here
         TrabalhoRSA trab = new TrabalhoRSA();
 
-        String toCript = "Estou testando essa coisa legal chamada RSA";
+        //String toCript = "Estou testando essa coisa legal chamada RSA";
+        String toCript = "RSA";
 
         List<String> strings = SplitStrings(toCript, 4);
         List<RSAElement> criptografados = new ArrayList<>();
@@ -248,8 +249,18 @@ public class TrabalhoRSA {
         while (phi.gcd(e).compareTo(BigInteger.ONE) > 0 && e.compareTo(phi) < 0) {
             e = e.add(BigInteger.ONE); // Vai somando de 2 em 2. Uma hora vira primo. Confia :p
         }
-
+        /*
         d = e.modInverse(phi);
+        // Função inverso modular aqui
+        BigInteger our2 = modLinSolver(e, BigInteger.ONE, phi);
+        System.out.println(our2.toString());//ax === b (mod n)
+        // a = e
+        // b = 1
+        // n = (p-1)(q-1)
+        if( d.equals(our2)){
+            System.out.println("Conseguimos!!!");
+        }*/
+        d = inversoModular(e, phi);
 
         // Agora ja temos todos os numeros calculados        
         elemento.msgCifrada = new BigInteger(s.getBytes()).modPow(e, n).toString();
@@ -271,6 +282,52 @@ public class TrabalhoRSA {
         + "\n\n**************]]\n");
 
         return elemento;
+    }
+    
+    BigInteger inversoModular( BigInteger e, BigInteger phi){
+        return modLinSolver(e, BigInteger.ONE, phi);
+    }
+    
+    BigInteger modLinSolver( BigInteger a, BigInteger b, BigInteger n){
+        BigInteger[] r = eucl_ext(a, n);
+        BigInteger res;
+        System.out.println("modlinsolver: d: "+r[0].toString());
+        System.out.println("modlinsolver: x: "+r[1].toString());
+        System.out.println("modlinsolver: y: "+r[2].toString());
+        System.out.println((r[0].remainder(b)).toString());
+        if (r[0].remainder(b).equals(BigInteger.ZERO)){
+            BigInteger x0 = r[1].multiply(b.divide(r[0]).mod(n));
+            for( BigInteger i = BigInteger.ZERO; i.compareTo(r[0]) == -1; i = i.add(BigInteger.ONE)){
+                //System.out.println( x0.add(i.multiply(n.divide(r[0])).mod(n)).toString());
+                res = (x0.add(i.multiply(n.divide(r[0]))).mod(n));
+                System.out.println("Tentativa "+i.toString()+": "+res.toString());
+                if( res.compareTo(BigInteger.ZERO) == 1){
+                    return res;
+                }
+            }
+        }else{
+            System.out.println("Sem solucao");
+            return BigInteger.ZERO;
+        }
+        return BigInteger.ZERO;
+    }
+    
+    
+    BigInteger[] eucl_ext( BigInteger a, BigInteger b){
+        BigInteger[] res = new BigInteger[3];
+        res[0] = a;
+        res[1] = BigInteger.ONE;
+        res[2] = BigInteger.ZERO;
+        if( b.equals(BigInteger.ZERO)){
+            return res;
+        }
+        BigInteger[] resl = eucl_ext(b, a.mod(b));
+        
+        res[0] = resl[0];
+        res[1] = resl[2];
+        res[2] = resl[1].subtract((a.divide(b)).multiply(resl[2]));
+        
+        return res;
     }
 
     // RSAElement contem tudo necessario
